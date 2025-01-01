@@ -1,0 +1,16 @@
+if SHIELD_ERGOKEY_V0_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "ergokey_v0"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+if SHIELD_ERGOKEY_V0_LEFT || SHIELD_ERGOKEY_V0_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif
