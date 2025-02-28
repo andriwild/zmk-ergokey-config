@@ -1,0 +1,23 @@
+# Set configuration properties for either halves of the keyboards
+
+# For the left halve:
+# Define the left halve as BLE central
+if SHIELD_ERGOKEY_LEFT
+
+# Name must be less than 16 characters long!
+config ZMK_KEYBOARD_NAME
+    default "Ergokey"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif
+
+# for both halves
+#
+if SHIELD_ERGOKEY_LEFT || SHIELD_ERGOKEY_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif

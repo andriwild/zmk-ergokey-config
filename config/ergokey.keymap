@@ -1,15 +1,15 @@
-/*
- * Copyright (c) 2020 The ZMK Contributors
- *
- * SPDX-License-Identifier: MIT
- */
-
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/outputs.h>
 
-&out OUT_BLE
+// Defines what key goes where
+// &kp = keypress
+// &mo = momentary layer, means it activates a specific layer when we hold down this key
+//    &mo 1 = selects into the next layer
+// &bt = selects a different bluetooth device
+
+// concept of layers: https://zmk.dev/docs/keymaps#layers
+// key codes: https://zmk.dev/docs/keymaps/list-of-keycodes#modifiers
 
 / {
         keymap {
@@ -23,11 +23,10 @@
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |     |  N  |  M  |  ,  |  .  |  /  | APOS |
 // | CTRL | ALT | GUI | SPC | SPC | SPC |     | SPC | LOW |LARW |DARW |UARW | RARW |
                         bindings = <
-   &kp GRAVE  &kp N1    &kp N2    &kp N3     &kp N4     &kp N5               &kp N6     &kp N7  &kp N8     &kp N9    &kp N0    &kp BSPC
-   &kp TAB    &kp Q     &kp W     &kp E      &kp R      &kp T                &kp Y      &kp U   &kp I      &kp O     &kp P     &kp BSLH
-   &kp CAPS   &kp A     &kp S     &kp D      &kp F      &kp G                &kp H      &kp J   &kp K      &kp L     &kp SEMI  &kp RET
-   &kp LSHFT  &kp Z     &kp X     &kp C      &kp V      &kp B                &kp N      &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp APOS
-   &kp LCTRL  &kp LALT  &kp LGUI  &kp SPACE  &kp LALT   &kp LGUI             &kp SPACE  &mo 1   &kp LARW   &kp DARW  &kp UARW  &kp RARW
+   &kp ESC    &kp N1    &kp N2    &kp N3     &kp N4     &kp N5                                &kp N6 &kp N7  &kp N8     &kp N9    &kp N0    &kp BSPC
+   &kp CAPS   &kp Q     &kp W     &kp E      &kp R      &kp T                                 &kp Y  &kp U   &kp I      &kp O     &kp P     &kp BSLH
+   &kp LSHFT  &kp A     &kp S     &kp D      &kp F      &kp G                                 &kp H  &kp J   &kp K      &kp L     &kp SEMI  &kp RET
+   &kp LCTRL  &kp Z     &kp X     &kp C      &kp V      &kp B &kp A &kp A        &kp A &mo 1  &kp N  &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp APOS
                         >;
                 };
                 lower_layer {
@@ -37,10 +36,11 @@
 // |       |       |       | LPAR  | RPAR  |       |          |       | LBKT  | RBKT  |       |       |       |
 // |       |       |       |       |       |       |          |       |       |       |       |       |       |
                         bindings = <
-   &trans    &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4           &trans    &trans    &trans   &trans   &trans  &bt BT_CLR
-   &trans    &trans         &trans         &trans         &trans         &trans                 &trans    &trans    &trans   &trans   &trans  &trans
+   &trans    &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4           &trans    &trans    &trans   &trans      &trans     &bt BT_CLR
+   &trans    &trans         &trans         &trans         &trans         &trans                 &trans    &trans    &trans   &trans      &trans     &trans
    &trans    &trans         &trans         &kp LPAR       &kp RPAR       &trans                 &trans    &kp LBKT  &kp RBKT &kp MINUS   &kp EQUAL  &trans
-   &trans    &trans         &trans         &trans         &trans         &trans                 &trans    &trans    &trans   &trans   &trans  &trans
+   &trans    &trans         &trans         &trans         &trans         &trans                 &trans    &trans    &trans   &trans      &trans     &trans
+                                                          &trans         &trans                 &trans    &trans
                         >;
                 };
         };
